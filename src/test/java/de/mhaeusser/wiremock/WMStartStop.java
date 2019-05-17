@@ -22,14 +22,16 @@ public class WMStartStop {
         stop(false);
     }
 
-    public static void start() {
-        start(true);
+    public static WireMockConfiguration start() {
+        return start(true);
     }
 
-    public static void start(boolean silent) {
-        wireMockServer = new WireMockServer(wireMockConfig().port(portNumber));
+    public static WireMockConfiguration start(boolean silent) {
+        WireMockConfiguration wireMockConfig = wireMockConfig().port(portNumber);
+        wireMockServer = new WireMockServer(wireMockConfig);
         wireMockServer.start();
         if (!silent) diagRunning();
+        return wireMockConfig;
     }
 
     public static void stop() {
@@ -41,9 +43,12 @@ public class WMStartStop {
         if (!silent) diagRunning();
     }
 
-    public static void wait(int sec) throws InterruptedException {
+    public static void wait(int sec) {
         System.out.println("Waiting " + sec + " seconds.");
-        Thread.sleep(sec * 1000);
+        try {
+            Thread.sleep(sec * 1000);
+        } catch (InterruptedException ignored) {
+        }
     }
 
     public static void diagRunning() {
