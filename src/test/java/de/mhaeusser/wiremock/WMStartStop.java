@@ -12,25 +12,33 @@ public class WMStartStop {
 
     public static final int portNumber = 8090;
 
+    private static WireMockServer wireMockServer;
+
     public static void main(String[] args) throws InterruptedException {
-        WireMockServer wireMockServer = new WireMockServer(wireMockConfig().port(portNumber));
-        wireMockServer.start();
-        diagRunning(wireMockServer);
+        start(false);
 
-        test1();
+        wait(2);
 
-        wait(5);
-
-        wireMockServer.stop();
-        diagRunning(wireMockServer);
+        stop(false);
     }
 
-    public static void test1() {
-        WireMock.configureFor("localhost", portNumber);
-        stubFor(get(urlEqualTo("/some/thing"))
-                .willReturn(aResponse()
-                        .withHeader("Content-Type", "text/plain")
-                        .withBody("Hello world!")));
+    public static void start() {
+        start(true);
+    }
+
+    public static void start(boolean silent) {
+        wireMockServer = new WireMockServer(wireMockConfig().port(portNumber));
+        wireMockServer.start();
+        if (!silent) diagRunning();
+    }
+
+    public static void stop() {
+        stop(true);
+    }
+
+    public static void stop(boolean silent) {
+        wireMockServer.stop();
+        if (!silent) diagRunning();
     }
 
     public static void wait(int sec) throws InterruptedException {
@@ -38,7 +46,7 @@ public class WMStartStop {
         Thread.sleep(sec * 1000);
     }
 
-    public static void diagRunning(WireMockServer wireMockServer) {
+    public static void diagRunning() {
         System.out.print("WireMockServer is ");
         if (!wireMockServer.isRunning()) System.out.print("NOT ");
         // wireMockServer.port() leads to IllegalStateException when server has been stopped
