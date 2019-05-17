@@ -19,5 +19,5 @@ returns response defined in `mappings/stuff.json`
 
 
 http://localhost:8080/content.html
-returns contents of `__files\content.html`
+returns contents of `__files/content.html`
 

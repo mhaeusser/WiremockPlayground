@@ -1,10 +1,24 @@
 {
-    "request": {
-        "method": "GET",
-        "url": "/api/mytest"
-    },
-    "response": {
-        "status": 200,
-        "body": "<b>Ska</b>"
-    }
+    "mappings": [
+        {
+            "request": {
+                "method": "GET",
+                "url": "/api/test1"
+            },
+            "response": {
+                "status": 200,
+                "body": "<b>Ska</b>"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/api/test2"
+            },
+            "response": {
+                "status": 200,
+                "body": "<b>Rocksteady</b>"
+            }
+        }
+    ]
 }
