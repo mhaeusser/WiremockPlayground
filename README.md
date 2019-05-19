@@ -13,8 +13,9 @@ Some basic [Wiremock](<http://wiremock.org/) tests.
 
 Try these URLs (browser or curl):
 
-http://localhost:8080/api/mytest 
-returns response defined in `mappings/stuff.json`
+http://localhost:8080/api/test1
+http://localhost:8080/api/test2
+returns responses defined in `mappings/stuff.json`
 
 
 
