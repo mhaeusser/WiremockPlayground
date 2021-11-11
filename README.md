@@ -1,6 +1,6 @@
 # Wiremock
 
-Some basic [Wiremock](<http://wiremock.org/) tests.
+Some basic [Wiremock](http://wiremock.org/) tests.
 
 ### How to run
 (1) [Download the standalone jar](http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-standalone/2.23.2/wiremock-standalone-2.23.2.jar), as described on <http://wiremock.org/docs/running-standalone/>
